@@ -1,6 +1,6 @@
 import pandas as pd
 from pandas._libs import indexing
-from pandas.core.frame import DataFrame
+from pandas.core.frame import DataFrame 
 import time
 from datetime import datetime
 import math
@@ -24,19 +24,16 @@ def timedifference():
             continue
         else:
             df_new['TimeDifference'].iloc[i - 1] = df_new['TimeDifference'].iloc[i] - df_new['TimeDifference'].iloc[ i - 1]
-    print(df_new.to_string())
+    
 
 
 def dataprocessing():
     timediff = df_new['TimeDifference']
-    print(timediff)
     start = 0
     for i in range(0, len(timediff)):
         if (timediff[i] - timediff[0] >= 1800):
             
             frame = df_new.iloc[start:i + 1]
-
-            print(frame)
             frame['TimeStamp'] = frame['TimeStamp'].apply(lambda x: x.split(' ')[1])
             frame['TimeStamp'] = frame['TimeStamp'].apply(lambda x: x.split(':'))
             frame['TimeStamp'] = frame['TimeStamp'].apply(lambda x: int(x[0]) * 60 + int(x[1]))
